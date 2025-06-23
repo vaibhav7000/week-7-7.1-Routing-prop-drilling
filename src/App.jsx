@@ -1,9 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router"
 import './App.css'
 import HeaderMemo from "./Components/Header";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
+import FallBack from "./Components/Fallback.jsx";
 
 // This approach shuvs all the Component rendering logic inside a single JS file, increase the bundle side that server will send ( not optimized way ), rather only select those routes which are important ( select the respective components for that ) for else make them "Lazy" -> when routed to that it will fetch that and updated the bundle
+
+// "Suspense" API is provided by React so that our when fetching the lazy component that we does not have we can show other components till they does not come and when have access to that our lazy component will be replaced 
+
+// => Suspence api -> used when fetching the lazy component so that till they are not able other Component Can be shown
 
 const About = lazy(() => import('./Components/About.jsx'));
 const Landing = lazy(() => import("./Components/Landing.jsx"))
@@ -16,7 +21,7 @@ function App() {
     <>
       <HeaderMemo />
         <Routes>
-          <Route path="" element={<Landing/>}/>
+          <Route path="" element={<Suspense fallback={<FallBack />}><Landing/></Suspense>}/>
           <Route path="dashboard" element={<Dashboard/>} />
           <Route path="about" element={<About/>} />
         </Routes>
