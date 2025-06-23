@@ -1,18 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router"
 import './App.css'
-import { Landing } from "./Components/Landing";
-import DashBoard from "./Components/Dashboard";
-import Header from "./Components/Header";
+import HeaderMemo from "./Components/Header";
+import { lazy } from "react";
+
+// This approach shuvs all the Component rendering logic inside a single JS file, increase the bundle side that server will send ( not optimized way ), rather only select those routes which are important ( select the respective components for that ) for else make them "Lazy" -> when routed to that it will fetch that and updated the bundle
+
+const About = lazy(() => import('./Components/About.jsx'));
+const Landing = lazy(() => import("./Components/Landing.jsx"))
+const Dashboard = lazy(() => import("./Components/Dashboard.jsx"));
 
 function App() {
 
   // Syntax to enable routing in the application
   return (
     <>
-      <Header />
+      <HeaderMemo />
         <Routes>
           <Route path="" element={<Landing/>}/>
-          <Route path="dashboard" element={<DashBoard/>} />
+          <Route path="dashboard" element={<Dashboard/>} />
+          <Route path="about" element={<About/>} />
         </Routes>
     </>
 
