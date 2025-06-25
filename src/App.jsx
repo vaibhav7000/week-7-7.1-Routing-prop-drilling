@@ -35,7 +35,7 @@ export default App
 
 // "React" allows us to make "single page web-applications" (SPA) -> there is no way to naviagte to other pages when application is building using "React", Using React-router we can build" multi-page web-application"
 
-// "React-router" enables "client-side-routing" -> this refers to handling navigation within the browser using the js ( does not cause full page reload ) no request will be send to the server, only using JS we will update the component
+// "React-router" enables "client-side-routing" -> this refers to handling navigation within the browser using the js code ( does not cause full page reload ) no request will be send to the server, only using JS we will update the components inside the root element of single html file
 
 /*
 On URL change / navigation happens , React Router:
@@ -43,7 +43,7 @@ On URL change / navigation happens , React Router:
 1. Intercepts the request.
 2. Matches the URL to a route.
 3. Browser URL changes to new Route
-4. React dynamically shows the <About /> component
+4. React dynamically updates the component inside the single html file
 5. No network request for a new HTML page
 
 Dynamically renders the appropriate React component within the root element present inside the index.html and hence does not cause the page to reload
